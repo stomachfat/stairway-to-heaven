@@ -3,6 +3,8 @@ import './App.scss';
 
 import logo from './logo.svg';
 
+import Input from './atoms/Input';
+
 class App extends React.Component {
   public render() {
     return (
@@ -11,9 +13,8 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <Input
+        />
       </div>
     );
   }
