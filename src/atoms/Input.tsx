@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Component, SyntheticEvent } from 'react'
 
-interface Iprops extends HTMLInputElement {
+export interface Iprops extends HTMLInputElement {
   handleChange: (state: Partial<Istate>) => string,
 }
 

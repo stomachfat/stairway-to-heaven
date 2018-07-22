@@ -17,7 +17,7 @@ const Control: SFC<Partial<IControlProps>> = ({
 }) => {
   return (
     <p
-      className={"Control " + classNames}
+      className={"control " + classNames}
       {...rest}
     >
       {children}
