@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { HTMLProps, SFC } from 'react'
 
-interface ISubtitleProps {
+interface ISubtitleProps extends HTMLProps<HTMLHeadingElement> {
   classNames?: string,
   title?: string,
 }
 
-const defaultProps: ISubtitleProps = {
+const defaultProps: Partial<ISubtitleProps> = {
   classNames: '',
   title: 'Subtitle',
 }
 
-const Subtitle: SFC<Partial<ISubtitleProps> & HTMLProps<HTMLHeadingElement>> = ({
+const Subtitle: SFC<Partial<ISubtitleProps>> = ({
   title,
   classNames,
   ...rest

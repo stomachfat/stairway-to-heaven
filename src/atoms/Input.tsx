@@ -1,4 +1,3 @@
-import { noop } from 'lodash'
 import * as React from 'react'
 import { Component, SyntheticEvent } from 'react'
 
@@ -26,7 +25,6 @@ class Input extends Component<Partial<Iprops>, Partial<Istate>> {
   public handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
     this.setState({value: event.currentTarget.value}, () => {
       if (this.props.handleChange === undefined) { return }
-      if (this.props.handleChange === noop) { return }
 
       this.changeValue(this.props.handleChange(this.state));
     })
