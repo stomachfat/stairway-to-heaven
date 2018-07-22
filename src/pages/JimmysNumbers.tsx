@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { Component, Fragment } from 'react'
 
-import Input from '../atoms/Input'
+
+import Container from '../atoms/Container'
+import Section from '../atoms/Section'
 import Subtitle from '../atoms/Subtitle'
 import Title from '../atoms/Title'
+import LabelInputField from '../molecules/LabelInputField'
 import Header from '../organisms/Header'
 
 class JimmysNumbers extends Component {
@@ -13,7 +16,7 @@ class JimmysNumbers extends Component {
         <Header
           classNames="is-primary"
         >
-          <div className="container">
+          <Container>
             <Title
               id="wtf"
               title="Jimmy's Numbers"
@@ -21,9 +24,22 @@ class JimmysNumbers extends Component {
             <Subtitle
               title="Must pass to be a prospect"
             />
-          </div>
+          </Container>
         </Header>
-        <Input />
+
+        <Section>
+          <Container>
+            <LabelInputField
+              label="Asking Price"
+              fieldProps={{
+                classNames: 'is-horizontal',
+              }}
+              fieldLabelProps={{
+                classNames: 'is-normal',
+              }}
+            />
+          </Container>
+        </Section>
       </Fragment>
     )
   }
