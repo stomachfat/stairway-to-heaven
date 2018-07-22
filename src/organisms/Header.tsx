@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Component, HTMLProps } from 'react'
 
-interface ISectionProps {
+interface ISectionProps extends HTMLProps<HTMLDivElement> {
   classNames: string
 }
 
-class Header extends Component<ISectionProps & HTMLProps<HTMLDivElement>> {
+class Header extends Component<ISectionProps> {
   public static defaultProps: ISectionProps = {
     classNames: '',
   }

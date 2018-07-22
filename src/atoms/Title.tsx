@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { HTMLProps, SFC } from 'react'
 
-interface ITitleProps {
+interface ITitleProps extends HTMLProps<HTMLHeadingElement> {
   classNames?: string,
   title?: string,
 }
 
-const defaultProps: ITitleProps = {
+const defaultProps: Partial<ITitleProps> = {
   classNames: '',
   title: 'Hero Banner',
 }
 
-const Title: SFC<Partial<ITitleProps> & HTMLProps<HTMLHeadingElement>> = ({
+const Title: SFC<Partial<ITitleProps>> = ({
   title,
   classNames,
   ...rest
