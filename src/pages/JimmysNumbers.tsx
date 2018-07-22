@@ -2,11 +2,10 @@ import * as React from 'react'
 import { Component, Fragment } from 'react'
 
 import Container from '../atoms/Container'
-import Section from '../atoms/Section'
 import Subtitle from '../atoms/Subtitle'
 import Title from '../atoms/Title'
-import LabelInputField from '../molecules/LabelInputField'
 import Header from '../organisms/Header'
+import PropertyFinancials from '../organisms/PropertyFinancials'
 
 class JimmysNumbers extends Component {
   public render() {
@@ -17,7 +16,7 @@ class JimmysNumbers extends Component {
         >
           <Container>
             <Title
-              id="wtf"
+              id="header-title"
               title="Jimmy's Numbers"
             />
             <Subtitle
@@ -26,19 +25,8 @@ class JimmysNumbers extends Component {
           </Container>
         </Header>
 
-        <Section>
-          <Container>
-            <LabelInputField
-              label="Asking Price"
-              fieldProps={{
-                classNames: 'is-horizontal',
-              }}
-              fieldLabelProps={{
-                classNames: 'is-normal',
-              }}
-            />
-          </Container>
-        </Section>
+        <PropertyFinancials
+        />
       </Fragment>
     )
   }

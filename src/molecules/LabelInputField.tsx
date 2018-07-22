@@ -5,18 +5,20 @@ import Field, { IFieldProps } from '../atoms/Field'
 import FieldBody from '../atoms/FieldBody'
 import FieldLabel, { IFieldLabelProps } from '../atoms/FieldLabel'
 import Label from '../atoms/Label'
-import InputControl from '../molecules/InputControl'
+import InputControl, { IInputControl } from '../molecules/InputControl'
 
 interface ILabelInputField {
   label: string,
   fieldLabelProps: IFieldLabelProps,
   fieldProps: IFieldProps,
+  inputControlProps: IInputControl,
 }
 
 const LabelInputField: SFC<Partial<ILabelInputField>> = ({
   label,
   fieldLabelProps,
   fieldProps,
+  inputControlProps,
 }) => {
   return (
     <Field
@@ -32,25 +34,7 @@ const LabelInputField: SFC<Partial<ILabelInputField>> = ({
       <FieldBody>
         <Field>
           <InputControl
-            inputProps={{
-              placeholder: "Asking Price"
-            }}
-            leftIconProps={{
-              iconProps: {
-                classNames: "fas fa-envelope",
-              },
-              spanProps: {
-                classNames: "icon is-small",
-              },
-            }}
-            rightIconProps={{
-              iconProps: {
-                classNames: "fas fa-envelope",
-              },
-              spanProps: {
-                classNames: "icon is-small",
-              },
-            }}
+            {...inputControlProps}
           />
         </Field>
       </FieldBody>

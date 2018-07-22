@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import { HTMLAttributes, SFC } from 'react'
 
@@ -16,7 +17,7 @@ const Section: SFC<Partial<ISectionProps>> = ({
 }) => {
   return (
     <section
-      className={"section " + classNames}
+      className={cx('section', classNames)}
       {...rest}
     >
       {children}

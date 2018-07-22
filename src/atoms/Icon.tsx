@@ -10,20 +10,24 @@ interface IiProps extends HTMLDivElement {
 }
 
 export interface IIconProps {
-  spanProps: Partial<ISpanProps>,
+  spanProps?: Partial<ISpanProps>,
   iconProps: Partial<IiProps>,
 }
 
-const Icon: SFC<IIconProps> = ({
-  spanProps: {
-    classNames: spanClassNames,
-    // ...spanRest
-  },
-  iconProps: {
-    classNames: iconClassNames,
-    // ...iconRest
-  },
-}) => {
+const defaultSpanProps = {
+  classNames: '',
+}
+
+const Icon: SFC<IIconProps> = (props) => {
+  const {
+    spanProps: {
+      classNames: spanClassNames,
+    } = defaultSpanProps,
+    iconProps: {
+      classNames: iconClassNames,
+    },
+  } = props
+
   return(
     <span className={"icon " + spanClassNames}>
       <i className={iconClassNames}/>
@@ -35,9 +39,8 @@ Icon.defaultProps = {
   iconProps: {
     classNames: '',
   },
-  spanProps: {
-    classNames: '',
-  },
+  spanProps: defaultSpanProps,
 }
+
 
 export default Icon
