@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Component, Fragment } from 'react'
 
-
 import Container from '../atoms/Container'
 import Section from '../atoms/Section'
 import Subtitle from '../atoms/Subtitle'

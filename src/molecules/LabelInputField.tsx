@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { SFC } from 'react'
 
-import Control from '../atoms/Control'
 import Field, { IFieldProps } from '../atoms/Field'
 import FieldBody from '../atoms/FieldBody'
 import FieldLabel, { IFieldLabelProps } from '../atoms/FieldLabel'
-import Input from '../atoms/Input'
 import Label from '../atoms/Label'
+import InputControl from '../molecules/InputControl'
 
 interface ILabelInputField {
   label: string,
@@ -32,9 +31,27 @@ const LabelInputField: SFC<Partial<ILabelInputField>> = ({
       </FieldLabel>
       <FieldBody>
         <Field>
-          <Control>
-            <Input />
-          </Control>
+          <InputControl
+            inputProps={{
+              placeholder: "Asking Price"
+            }}
+            leftIconProps={{
+              iconProps: {
+                classNames: "fas fa-envelope",
+              },
+              spanProps: {
+                classNames: "icon is-small",
+              },
+            }}
+            rightIconProps={{
+              iconProps: {
+                classNames: "fas fa-envelope",
+              },
+              spanProps: {
+                classNames: "icon is-small",
+              },
+            }}
+          />
         </Field>
       </FieldBody>
     </Field>
