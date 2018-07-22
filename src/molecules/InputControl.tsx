@@ -8,13 +8,13 @@ import Input, { Iprops as IInputProps } from '../atoms/Input'
 
 
 
-interface IIInputControl {
+export interface IInputControl {
   inputProps: Partial<IInputProps>,
   leftIconProps: IIconProps | undefined,
   rightIconProps: IIconProps | undefined,
 }
 
-const IInputControl: SFC<Partial<IIInputControl>> = ({
+const IInputControl: SFC<Partial<IInputControl>> = ({
   inputProps,
   leftIconProps,
   rightIconProps,
@@ -37,7 +37,8 @@ const IInputControl: SFC<Partial<IIInputControl>> = ({
             ...leftIconProps,
             spanProps: {
               ...leftIconProps.spanProps,
-              classNames: leftIconProps.spanProps.classNames + ' is-left',
+              classNames: leftIconProps.spanProps &&
+                leftIconProps.spanProps.classNames + ' is-left',
             }
           }}
         />
@@ -48,7 +49,8 @@ const IInputControl: SFC<Partial<IIInputControl>> = ({
             ...rightIconProps,
             spanProps: {
               ...rightIconProps.spanProps,
-              classNames: rightIconProps.spanProps.classNames + ' is-right',
+              classNames: rightIconProps.spanProps &&
+                rightIconProps.spanProps.classNames + ' is-right',
             }
           }}
         />

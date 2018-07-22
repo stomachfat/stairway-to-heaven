@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import { HTMLAttributes, SFC } from 'react'
 
@@ -17,7 +18,7 @@ const Control: SFC<Partial<IControlProps>> = ({
 }) => {
   return (
     <p
-      className={"control " + classNames}
+      className={cx("control", classNames)}
       {...rest}
     >
       {children}

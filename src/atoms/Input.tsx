@@ -1,33 +1,30 @@
+import cx from 'classnames'
 import * as React from 'react'
 import { Component, SyntheticEvent } from 'react'
 
 export interface Iprops extends HTMLInputElement {
-  handleChange: (state: Partial<Istate>) => string,
+  handleChange: (value: string) => void,
+  classNames?: string,
+  readonly?: boolean,
 }
 
-interface Istate {
-  value: string,
-}
-
-class Input extends Component<Partial<Iprops>, Partial<Istate>> {
+class Input extends Component<Partial<Iprops>> {
 
   public static defaultProps: Partial<Iprops> = {
-    className: "input is-primary",
-    handleChange: (state: Istate) => state.value,
+    classNames: "",
+    handleChange: () => undefined,
     placeholder: "primary input",
+    readonly: false,
+    value: '',
   }
 
   constructor(props: HTMLInputElement) {
     super(props)
-    this.state = {value: ''}
   }
 
   public handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    this.setState({value: event.currentTarget.value}, () => {
-      if (this.props.handleChange === undefined) { return }
-
-      this.changeValue(this.props.handleChange(this.state));
-    })
+    if (this.props.handleChange === undefined) { return }
+    this.props.handleChange(event.currentTarget.value)
   }
 
   public changeValue = (value: string) => {
@@ -37,11 +34,12 @@ class Input extends Component<Partial<Iprops>, Partial<Istate>> {
   public render() {
     return (
       <input
-        className={this.props.className}
+        className={cx("input", this.props.classNames)}
         placeholder={this.props.placeholder}
         type="text"
-        value={this.state.value}
+        value={this.props.value}
         onChange={this.handleChange}
+        readOnly={this.props.readonly}
       />
     );
   }

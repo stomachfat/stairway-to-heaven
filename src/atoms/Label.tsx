@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import * as React from 'react'
 import { LabelHTMLAttributes, SFC } from 'react'
 
@@ -18,7 +19,7 @@ const Label: SFC<Partial<ILabelProps>> = ({
 }) => {
   return (
     <label
-      className={"label " + classNames}
+      className={cx("label", classNames)}
       {...rest}
     >
       {label}
