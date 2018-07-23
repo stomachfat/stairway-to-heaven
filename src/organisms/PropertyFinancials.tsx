@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Component } from 'react'
 
 import Card from '../atoms/Card'
+import CardContent from '../atoms/CardContent'
 import CardFooter from '../atoms/CardFooter'
 import CardHeader from '../atoms/CardHeader'
 import CardHeaderIcon from '../atoms/CardHeaderIcon'
@@ -164,216 +165,222 @@ class PropertyFinancials extends Component {
 
     return (
       <Section>
-        <PurchaseFinancing
-          allInCost={allInCost}
-          askingPrice={this.state.askingPrice}
-          askingPriceHandleInputChange={this.handleInputChange('askingPrice')}
-          amortizationPeriodInYears={this.state.amortizationPeriodInYears}
-          amortizationPeriodInYearsHandleInputChange={this.handleInputChange('amortizationPeriodInYears')}
-          closingCosts={this.state.closingCosts}
-          closingCostsHandleInputChange={this.handleInputChange('closingCosts')}
-          downPayment={this.state.downPayment}
-          downPaymentHandleInputChange={this.handleInputChange('downPayment')}
-          fairMarketValue={this.state.fairMarketValue}
-          fairMarketValueHandleInputChange={this.handleInputChange('fairMarketValue')}
-          interestRate={this.state.interestRate}
-          interestRateHandleInputChange={this.handleInputChange('interestRate')}
-          loanAmount={loanAmount}
-          offerPrice={this.state.offerPrice}
-          offerPriceHandleInputChange={this.handleInputChange('offerPrice')}
-          outOfPocketCost={outOfPocketCost}
-          repairCosts={this.state.repairCosts}
-          repairCostsHandleInputChange={this.handleInputChange('repairCosts')}
-          monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
-        />
-        <Card>
-        <CardHeader>
-          <CardHeaderTitle>
-            Quick & Dirty Cap Rate
-          </CardHeaderTitle>
-          <CardHeaderIcon>
-            <Icon
-              iconProps={{
-                classNames: 'fas fa-seedling',
-              }}
-            />
-          </CardHeaderIcon>
-        </CardHeader>
-        <Container>
-            <LabelInputField
-              label="Rent"
-              fieldProps={{
-                classNames: 'is-horizontal',
-              }}
-              fieldLabelProps={{
-                classNames: 'is-normal',
-              }}
-              inputControlProps={{
-                inputProps: {
-                  handleChange: this.handleInputChange('rent'),
-                  placeholder: "Rent",
-                  value: this.state.rent,
-                },
-                leftIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-dollar-sign",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-                rightIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-hand-holding-usd",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-              }}
-            />
-
-            <LabelInputField
-              label="Vacancy Rate"
-              fieldProps={{
-                classNames: 'is-horizontal',
-              }}
-              fieldLabelProps={{
-                classNames: 'is-normal',
-              }}
-              inputControlProps={{
-                inputProps: {
-                  handleChange: this.handleInputChange('vacancyRate'),
-                  placeholder: "Vacancy Rate",
-                  value: this.state.vacancyRate,
-                },
-                leftIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-percentage",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-                rightIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-hand-holding-usd",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-              }}
-            />
-
-            <LabelInputField
-              label="Expense Rate"
-              fieldProps={{
-                classNames: 'is-horizontal',
-              }}
-              fieldLabelProps={{
-                classNames: 'is-normal',
-              }}
-              inputControlProps={{
-                inputProps: {
-                  handleChange: this.handleInputChange('expenseRate'),
-                  placeholder: "Expenses Rate",
-                  value: this.state.expenseRate,
-                },
-                leftIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-percentage",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-                rightIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-hand-holding-usd",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-              }}
-            />
-
-            <LabelInputField
-              label="Cap Rate"
-              fieldProps={{
-                classNames: 'is-horizontal',
-              }}
-              fieldLabelProps={{
-                classNames: 'is-normal',
-              }}
-              inputControlProps={{
-                inputProps: {
-                  handleChange: this.handleInputChange('capRate'),
-                  placeholder: "Cap Rate",
-                  value: this.state.capRate,
-                },
-                leftIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-percentage",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-                rightIconProps: {
-                  iconProps: {
-                    classNames: "fas fa-hand-holding-usd",
-                  },
-                  spanProps: {
-                    classNames: "icon is-small",
-                  },
-                },
-              }}
-            />
-
-            <div className="content">
-              <LabelInputField
-                label="What To Offer"
-                fieldProps={{
-                  classNames: 'is-horizontal',
-                }}
-                fieldLabelProps={{
-                  classNames: 'is-normal',
-                }}
-                inputControlProps={{
-                  inputProps: {
-                    classNames: "is-primary",
-                    placeholder: "What To Offer",
-                    isReadonly: true,
-                    value: String(whatToOffer),
-                  },
-                  leftIconProps: {
-                    iconProps: {
-                      classNames: "fas fa-dollar-sign",
-                    },
-                    spanProps: {
-                      classNames: "icon is-small",
-                    },
-                  },
-                  rightIconProps: {
-                    iconProps: {
-                      classNames: "fas fa-home",
-                    },
-                    spanProps: {
-                      classNames: "icon is-small",
-                    },
-                  },
+        <Section>
+          <PurchaseFinancing
+            allInCost={allInCost}
+            askingPrice={this.state.askingPrice}
+            askingPriceHandleInputChange={this.handleInputChange('askingPrice')}
+            amortizationPeriodInYears={this.state.amortizationPeriodInYears}
+            amortizationPeriodInYearsHandleInputChange={this.handleInputChange('amortizationPeriodInYears')}
+            closingCosts={this.state.closingCosts}
+            closingCostsHandleInputChange={this.handleInputChange('closingCosts')}
+            downPayment={this.state.downPayment}
+            downPaymentHandleInputChange={this.handleInputChange('downPayment')}
+            fairMarketValue={this.state.fairMarketValue}
+            fairMarketValueHandleInputChange={this.handleInputChange('fairMarketValue')}
+            interestRate={this.state.interestRate}
+            interestRateHandleInputChange={this.handleInputChange('interestRate')}
+            loanAmount={loanAmount}
+            offerPrice={this.state.offerPrice}
+            offerPriceHandleInputChange={this.handleInputChange('offerPrice')}
+            outOfPocketCost={outOfPocketCost}
+            repairCosts={this.state.repairCosts}
+            repairCostsHandleInputChange={this.handleInputChange('repairCosts')}
+            monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
+          />
+        </Section>
+        <Section>
+          <Card>
+          <CardHeader>
+            <CardHeaderTitle>
+              Quick & Dirty Cap Rate
+            </CardHeaderTitle>
+            <CardHeaderIcon>
+              <Icon
+                iconProps={{
+                  classNames: 'fas fa-seedling',
                 }}
               />
-            </div>
+            </CardHeaderIcon>
+          </CardHeader>
+          <CardContent>
+            <Container>
+                <LabelInputField
+                  label="Rent"
+                  fieldProps={{
+                    classNames: 'is-horizontal',
+                  }}
+                  fieldLabelProps={{
+                    classNames: 'is-normal',
+                  }}
+                  inputControlProps={{
+                    inputProps: {
+                      handleChange: this.handleInputChange('rent'),
+                      placeholder: "Rent",
+                      value: this.state.rent,
+                    },
+                    leftIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-dollar-sign",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                    rightIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-hand-holding-usd",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                  }}
+                />
 
-          </Container>
+                <LabelInputField
+                  label="Vacancy Rate"
+                  fieldProps={{
+                    classNames: 'is-horizontal',
+                  }}
+                  fieldLabelProps={{
+                    classNames: 'is-normal',
+                  }}
+                  inputControlProps={{
+                    inputProps: {
+                      handleChange: this.handleInputChange('vacancyRate'),
+                      placeholder: "Vacancy Rate",
+                      value: this.state.vacancyRate,
+                    },
+                    leftIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-percentage",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                    rightIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-hand-holding-usd",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                  }}
+                />
 
-          <CardFooter>
-            <div className="content card-footer-item">Note: Use for ballparking.</div>
-          </CardFooter>
-          </Card>
+                <LabelInputField
+                  label="Expense Rate"
+                  fieldProps={{
+                    classNames: 'is-horizontal',
+                  }}
+                  fieldLabelProps={{
+                    classNames: 'is-normal',
+                  }}
+                  inputControlProps={{
+                    inputProps: {
+                      handleChange: this.handleInputChange('expenseRate'),
+                      placeholder: "Expenses Rate",
+                      value: this.state.expenseRate,
+                    },
+                    leftIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-percentage",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                    rightIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-hand-holding-usd",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                  }}
+                />
+
+                <LabelInputField
+                  label="Cap Rate"
+                  fieldProps={{
+                    classNames: 'is-horizontal',
+                  }}
+                  fieldLabelProps={{
+                    classNames: 'is-normal',
+                  }}
+                  inputControlProps={{
+                    inputProps: {
+                      handleChange: this.handleInputChange('capRate'),
+                      placeholder: "Cap Rate",
+                      value: this.state.capRate,
+                    },
+                    leftIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-percentage",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                    rightIconProps: {
+                      iconProps: {
+                        classNames: "fas fa-hand-holding-usd",
+                      },
+                      spanProps: {
+                        classNames: "icon is-small",
+                      },
+                    },
+                  }}
+                />
+
+                <div className="content">
+                  <LabelInputField
+                    label="What To Offer"
+                    fieldProps={{
+                      classNames: 'is-horizontal',
+                    }}
+                    fieldLabelProps={{
+                      classNames: 'is-normal',
+                    }}
+                    inputControlProps={{
+                      inputProps: {
+                        classNames: "is-primary",
+                        placeholder: "What To Offer",
+                        isReadonly: true,
+                        value: String(whatToOffer),
+                      },
+                      leftIconProps: {
+                        iconProps: {
+                          classNames: "fas fa-dollar-sign",
+                        },
+                        spanProps: {
+                          classNames: "icon is-small",
+                        },
+                      },
+                      rightIconProps: {
+                        iconProps: {
+                          classNames: "fas fa-home",
+                        },
+                        spanProps: {
+                          classNames: "icon is-small",
+                        },
+                      },
+                    }}
+                  />
+                </div>
+
+              </Container>
+            </CardContent>
+
+            <CardFooter>
+              <div className="content card-footer-item">Note: Use for ballparking.</div>
+            </CardFooter>
+            </Card>
+          </Section>
         </Section>
 
     )
