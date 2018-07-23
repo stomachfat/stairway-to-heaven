@@ -13,10 +13,10 @@ class Input extends Component<Partial<Iprops>> {
 
   public static defaultProps: Partial<Iprops> = {
     classNames: "",
-    isDisabled: false,
     handleChange: () => undefined,
-    placeholder: "primary input",
+    isDisabled: false,
     isReadonly: false,
+    placeholder: "primary input",
     value: '',
   }
 
