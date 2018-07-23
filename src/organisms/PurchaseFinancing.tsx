@@ -6,12 +6,11 @@ import CardFooter from '../atoms/CardFooter'
 import CardHeader from '../atoms/CardHeader'
 import CardHeaderIcon from '../atoms/CardHeaderIcon'
 import CardHeaderTitle from '../atoms/CardHeaderTitle'
-import Container from '../atoms/Container'
+import Content from '../atoms/Content'
 import Icon from '../atoms/Icon'
 import LabelInputField from '../molecules/LabelInputField'
-// import Section from '../atoms/Section'
 
-type InputChangeHandlerFunc = (value: string) => void;
+export type InputChangeHandlerFunc = (value: string) => void;
 
 interface IProps {
   allInCost: string,
@@ -78,7 +77,7 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
         </CardHeader>
 
         <CardContent>
-          <Container>
+          <Content>
               <LabelInputField
                 label="Asking Price"
                 fieldProps={{
@@ -488,7 +487,7 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
                 />
               </div>
 
-            </Container>
+            </Content>
           </CardContent>
 
         <CardFooter>
