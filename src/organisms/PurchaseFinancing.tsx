@@ -14,6 +14,7 @@ import LabelInputField from '../molecules/LabelInputField'
 type InputChangeHandlerFunc = (value: string) => void;
 
 interface IProps {
+  allInCost: string,
   amortizationPeriodInYears: string,
   amortizationPeriodInYearsHandleInputChange: InputChangeHandlerFunc,
   askingPrice: string,
@@ -24,8 +25,11 @@ interface IProps {
   downPaymentHandleInputChange: InputChangeHandlerFunc,
   interestRate: string,
   interestRateHandleInputChange: InputChangeHandlerFunc,
-  offerPriceHandleInputChange: InputChangeHandlerFunc,
+  loanAmount: string,
+  monthlyPrincipalAndInterest: string,
   offerPrice: string,
+  offerPriceHandleInputChange: InputChangeHandlerFunc,
+  outOfPocketCost: string,
   repairCosts: string,
   repairCostsHandleInputChange: InputChangeHandlerFunc,
   fairMarketValue: string,
@@ -35,6 +39,7 @@ interface IProps {
 
 class PurchaseFinancing extends React.Component<Partial<IProps>> {
   public static defaultProps: IProps = {
+    allInCost: '',
     amortizationPeriodInYears: '',
     amortizationPeriodInYearsHandleInputChange: (value: string) => undefined,
     askingPrice: '',
@@ -47,8 +52,11 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
     fairMarketValueHandleInputChange: (value: string) => undefined,
     interestRate: '',
     interestRateHandleInputChange: (value: string) => undefined,
+    loanAmount: '',
+    monthlyPrincipalAndInterest: '',
     offerPrice: '',
     offerPriceHandleInputChange: (value: string) => undefined,
+    outOfPocketCost: '',
     repairCosts: '',
     repairCostsHandleInputChange: (value: string) => undefined,
   }
@@ -333,10 +341,11 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
               }}
             />
 
+            {/* Outputs */}
 
-            {/* <div className="content">
+            <div className="content">
               <LabelInputField
-                label="What To Offer"
+                label="Monthly P&I"
                 fieldProps={{
                   classNames: 'is-horizontal',
                 }}
@@ -345,10 +354,10 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
                 }}
                 inputControlProps={{
                   inputProps: {
-                    placeholder: "What To Offer",
-                    readonly: true,
-                    value: String(whatToOffer),
-                    classNames: "is-primary"
+                    classNames: "is-primary",
+                    isDisabled: true,
+                    placeholder: "Monthly P&I",
+                    value: this.props.monthlyPrincipalAndInterest,
                   },
                   leftIconProps: {
                     iconProps: {
@@ -368,7 +377,115 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
                   },
                 }}
               />
-            </div>  */}
+            </div>
+
+            <div className="content">
+              <LabelInputField
+                label="Loan Amount"
+                fieldProps={{
+                  classNames: 'is-horizontal',
+                }}
+                fieldLabelProps={{
+                  classNames: 'is-normal',
+                }}
+                inputControlProps={{
+                  inputProps: {
+                    classNames: "is-primary",
+                    isDisabled: true,
+                    placeholder: "Loan Amount",
+                    value: this.props.loanAmount,
+                  },
+                  leftIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-dollar-sign",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                  rightIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-home",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                }}
+              />
+            </div>
+
+
+            <div className="content">
+              <LabelInputField
+                label="All-In Cost"
+                fieldProps={{
+                  classNames: 'is-horizontal',
+                }}
+                fieldLabelProps={{
+                  classNames: 'is-normal',
+                }}
+                inputControlProps={{
+                  inputProps: {
+                    classNames: "is-primary",
+                    isDisabled: true,
+                    placeholder: "All-In Cost",
+                    value: this.props.allInCost,
+                  },
+                  leftIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-dollar-sign",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                  rightIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-home",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div className="content">
+              <LabelInputField
+                label="Out of Pocket Cost"
+                fieldProps={{
+                  classNames: 'is-horizontal',
+                }}
+                fieldLabelProps={{
+                  classNames: 'is-normal',
+                }}
+                inputControlProps={{
+                  inputProps: {
+                    classNames: "is-primary",
+                    isDisabled: true,
+                    placeholder: "Out of Pocket Cost",
+                    value: this.props.outOfPocketCost,
+                  },
+                  leftIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-dollar-sign",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                  rightIconProps: {
+                    iconProps: {
+                      classNames: "fas fa-home",
+                    },
+                    spanProps: {
+                      classNames: "icon is-small",
+                    },
+                  },
+                }}
+              />
+            </div>
 
           </Container>
 

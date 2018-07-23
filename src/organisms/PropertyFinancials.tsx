@@ -12,6 +12,9 @@ import Section from '../atoms/Section'
 import LabelInputField from '../molecules/LabelInputField'
 import PurchaseFinancing from '../organisms/PurchaseFinancing'
 
+import Finance from 'financejs';
+const finance = new Finance();
+
 // Interface Istate {
 //   amortizationPeriodInYears: string,
 // }
@@ -56,9 +59,86 @@ class PropertyFinancials extends Component {
     const whatToOffer = (( (rentNum*(1-vacancyRateNum/100)) *(1-expenseRateNum/100))*12)/(capRateNum/100)
     const roundedToNearestCent = parseFloat(String((Math.round(whatToOffer * 100) / 100))).toFixed(2);
 
-    return String(roundedToNearestCent);
+    return roundedToNearestCent;
   }
 
+  public calculateLoanAmount = () => {
+    const {
+      offerPrice,
+      downPayment,
+    } = this.state;
+
+    if ( offerPrice === '' || downPayment === '') {
+      // default to placeholder
+      return undefined;
+    }
+
+    const offerPriceNum = Number(offerPrice)
+    const downPaymentNum = Number(downPayment)
+
+    const loanAmount = offerPriceNum - downPaymentNum
+
+    return loanAmount
+  }
+
+  public calculateMonthlyPrincipalAndInterest = () => {
+    const {
+      amortizationPeriodInYears,
+      interestRate,
+      offerPrice,
+      downPayment,
+    } = this.state;
+
+    if (amortizationPeriodInYears === '' || interestRate === ''
+      || offerPrice === '' || downPayment === ''
+    ) {
+      // default to placeholder
+      return undefined;
+    }
+
+    const interestRateNum = Number(interestRate)
+    const amortizationPeriodInYearsNum = Number(amortizationPeriodInYears)
+
+    const loanAmount = this.calculateLoanAmount()
+
+    return finance.AM(loanAmount, interestRateNum, amortizationPeriodInYearsNum*12, 1)
+  }
+
+  public calculateOutOfPocketCosts = () => {
+    const {
+      closingCosts,
+      downPayment,
+    } = this.state;
+
+    if (closingCosts === '' || downPayment === '') {
+      // default to placeholder
+      return undefined;
+    }
+
+    const closingCostsNum = Number(closingCosts)
+    const downPaymentNum = Number(downPayment)
+
+    return downPaymentNum + closingCostsNum
+  }
+
+  public calculateAllInCost = () => {
+    const {
+      closingCosts,
+      downPayment,
+      repairCosts,
+    } = this.state;
+
+    if (closingCosts === '' || downPayment === ''
+      || repairCosts === '' ) {
+      // default to placeholder
+      return undefined;
+    }
+
+    const repairCostsNum = Number(repairCosts)
+    const outOfPocketCostsNum = this.calculateOutOfPocketCosts() || 0
+
+    return outOfPocketCostsNum + repairCostsNum
+  }
 
   public handleInputChange = (field: string) => (value: string) => {
     this.setState({
@@ -67,11 +147,25 @@ class PropertyFinancials extends Component {
   }
 
   public render(){
-    const whatToOffer = this.calculateWhatToOffer();
+    const preformattedMPAI = this.calculateMonthlyPrincipalAndInterest()
+    const monthlyPrincipalAndInterest = preformattedMPAI ? String(preformattedMPAI) : ''
+
+    const preformattedWTO = this.calculateWhatToOffer()
+    const whatToOffer = preformattedWTO ? String(preformattedWTO) : ''
+
+    const preformattedLA = this.calculateLoanAmount()
+    const loanAmount = preformattedLA ? String(preformattedLA) : ''
+
+    const preformattedAIC = this.calculateAllInCost()
+    const allInCost = preformattedAIC ? String(preformattedAIC) : ''
+
+    const preformattedOOPC = this.calculateOutOfPocketCosts()
+    const outOfPocketCost = preformattedOOPC ? String(preformattedOOPC) : ''
 
     return (
       <Section>
         <PurchaseFinancing
+          allInCost={allInCost}
           askingPrice={this.state.askingPrice}
           askingPriceHandleInputChange={this.handleInputChange('askingPrice')}
           amortizationPeriodInYears={this.state.amortizationPeriodInYears}
@@ -84,10 +178,13 @@ class PropertyFinancials extends Component {
           fairMarketValueHandleInputChange={this.handleInputChange('fairMarketValue')}
           interestRate={this.state.interestRate}
           interestRateHandleInputChange={this.handleInputChange('interestRate')}
+          loanAmount={loanAmount}
           offerPrice={this.state.offerPrice}
           offerPriceHandleInputChange={this.handleInputChange('offerPrice')}
+          outOfPocketCost={outOfPocketCost}
           repairCosts={this.state.repairCosts}
           repairCostsHandleInputChange={this.handleInputChange('repairCosts')}
+          monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
         />
         <Card>
         <CardHeader>
@@ -248,7 +345,7 @@ class PropertyFinancials extends Component {
                   inputProps: {
                     classNames: "is-primary",
                     placeholder: "What To Offer",
-                    readonly: true,
+                    isReadonly: true,
                     value: String(whatToOffer),
                   },
                   leftIconProps: {

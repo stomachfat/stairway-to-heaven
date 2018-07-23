@@ -5,16 +5,18 @@ import { Component, SyntheticEvent } from 'react'
 export interface Iprops extends HTMLInputElement {
   handleChange: (value: string) => void,
   classNames?: string,
-  readonly?: boolean,
+  isDisabled?: boolean,
+  isReadonly?: boolean,
 }
 
 class Input extends Component<Partial<Iprops>> {
 
   public static defaultProps: Partial<Iprops> = {
     classNames: "",
+    isDisabled: false,
     handleChange: () => undefined,
     placeholder: "primary input",
-    readonly: false,
+    isReadonly: false,
     value: '',
   }
 
@@ -39,7 +41,8 @@ class Input extends Component<Partial<Iprops>> {
         type="text"
         value={this.props.value}
         onChange={this.handleChange}
-        readOnly={this.props.readonly}
+        readOnly={this.props.isReadonly}
+        disabled={this.props.isDisabled}
       />
     );
   }
