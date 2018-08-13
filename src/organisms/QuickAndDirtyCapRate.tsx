@@ -6,11 +6,8 @@ import CardFooter from '../atoms/CardFooter'
 import CardHeader from '../atoms/CardHeader'
 import CardHeaderIcon from '../atoms/CardHeaderIcon'
 import CardHeaderTitle from '../atoms/CardHeaderTitle'
-// import Column from '../atoms/Column'
-// import Columns from '../atoms/Columns'
 import Content from '../atoms/Content'
 import Icon from '../atoms/Icon'
-// import Section from '../atoms/Section'
 import LabelInputField from '../molecules/LabelInputField'
 import { InputChangeHandlerFunc } from '../organisms/PurchaseFinancing'
 
@@ -52,10 +49,8 @@ class QuickAndDirtyCapRate extends React.Component<Partial<IProps>> {
       return 'Please fill out all fields';
     }
 
-    // const askingPriceNum = Number(askingPrice)
     const capRateNum = Number(capRate)
     const expenseRateNum = Number(expenseRate)
-    // const offerPriceNum = Number(offerPrice)
     const rentNum = Number(rent)
     const vacancyRateNum = Number(vacancyRate)
 
@@ -229,8 +224,8 @@ class QuickAndDirtyCapRate extends React.Component<Partial<IProps>> {
                 inputControlProps={{
                   inputProps: {
                     classNames: "is-primary",
-                    placeholder: "What To Offer",
                     isReadonly: true,
+                    placeholder: "What To Offer",
                     value: String(whatToOffer),
                   },
                   leftIconProps: {

@@ -1,37 +1,34 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { Component, SyntheticEvent } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { Component, SyntheticEvent } from "react";
 
 export interface Iprops extends HTMLInputElement {
-  handleChange: (value: string) => void,
-  classNames?: string,
-  isDisabled?: boolean,
-  isReadonly?: boolean,
+  handleChange: (value: string) => void;
+  classNames?: string;
+  isDisabled?: boolean;
+  isReadonly?: boolean;
 }
 
 class Input extends Component<Partial<Iprops>> {
-
   public static defaultProps: Partial<Iprops> = {
     classNames: "",
     handleChange: () => undefined,
     isDisabled: false,
     isReadonly: false,
     placeholder: "primary input",
-    value: '',
-  }
+    value: ""
+  };
 
   constructor(props: HTMLInputElement) {
-    super(props)
+    super(props);
   }
 
   public handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    if (this.props.handleChange === undefined) { return }
-    this.props.handleChange(event.currentTarget.value)
-  }
-
-  public changeValue = (value: string) => {
-    this.setState({value})
-  }
+    if (this.props.handleChange === undefined) {
+      return;
+    }
+    this.props.handleChange(event.currentTarget.value);
+  };
 
   public render() {
     return (
@@ -48,4 +45,4 @@ class Input extends Component<Partial<Iprops>> {
   }
 }
 
-export default Input
+export default Input;
