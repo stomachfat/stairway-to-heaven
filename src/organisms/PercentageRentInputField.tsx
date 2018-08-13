@@ -12,10 +12,6 @@ interface IPercentageRentInputFieldProps
 class PercentageRentInputField extends React.Component<
   Partial<IPercentageRentInputFieldProps>
 > {
-  // *** TODO figure out what type to put here
-  // that accomodates the true ref and
-  // accomodates the forceRecalculate interface
-  private input: any;
   private primaryToSecondaryConversion: (percent: number) => number;
   private secondaryToPrimaryConversion: (fractionOfRent: number) => number;
 
@@ -46,7 +42,6 @@ class PercentageRentInputField extends React.Component<
 
     return (
       <LabelInputConversionField
-        ref={el => (this.input = el)}
         {...inputProps}
         primaryToSecondaryConversion={this.primaryToSecondaryConversion}
         secondaryToPrimaryConversion={this.secondaryToPrimaryConversion}
