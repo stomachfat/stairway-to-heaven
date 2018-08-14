@@ -122,9 +122,6 @@ class PropertyFinancials extends Component {
       ? String(preformattedMPAI)
       : "";
 
-    // const preformattedWTO = this.calculateWhatToOffer()
-    // const whatToOffer = preformattedWTO ? String(preformattedWTO) : ''
-
     const preformattedLA = this.calculateLoanAmount();
     const loanAmount = preformattedLA ? String(preformattedLA) : "";
 

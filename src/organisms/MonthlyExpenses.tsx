@@ -8,9 +8,8 @@ import CardHeaderIcon from "../atoms/CardHeaderIcon";
 import CardHeaderTitle from "../atoms/CardHeaderTitle";
 import Content from "../atoms/Content";
 import Icon from "../atoms/Icon";
-// import LabelInputConversionField from "../molecules/LabelInputConversionField";
 import LabelInputField from "../molecules/LabelInputField";
-import PercentageRentInputField from "./PercentageRentInputField";
+import PercentageAmountInputField from "./PercentageAmountInputField";
 
 export type InputChangeHandlerFunc = (value: string) => void;
 
@@ -85,8 +84,11 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
 
         <CardContent>
           <Content>
-            <LabelInputField
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Capital Expenditures"
+              handleChange={this.props.capitalExpendituresHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -95,9 +97,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.capitalExpendituresHandleInputChange,
-                  placeholder: "Capital Expenditures",
-                  value: this.props.capitalExpenditures
+                  placeholder: "Capital Expenditures"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -116,9 +116,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Capital Expenditures"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-allergies"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
-            <LabelInputField
+
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Maintenance"
+              handleChange={this.props.maintenanceHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -127,9 +152,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.maintenanceHandleInputChange,
-                  placeholder: "Maintenance & Repairs",
-                  value: this.props.maintenance
+                  placeholder: "Maintenance & Repairs"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -148,10 +171,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Maintenance & Repairs"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-bed"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
 
-            <LabelInputField
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Insurance"
+              handleChange={this.props.insuranceHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -160,9 +207,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.insuranceHandleInputChange,
-                  placeholder: "Insurance",
-                  value: this.props.insurance
+                  placeholder: "Insurance"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -181,10 +226,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Insurance"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-drum"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
 
-            <LabelInputField
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Water"
+              handleChange={this.props.waterHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -193,9 +262,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.waterHandleInputChange,
-                  placeholder: "Water Bill",
-                  value: this.props.water
+                  placeholder: "Water Bill"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -214,10 +281,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Water Bill"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-tint"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
 
-            <LabelInputField
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Gas"
+              handleChange={this.props.gasHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -226,9 +317,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.gasHandleInputChange,
-                  placeholder: "Gas Bill",
-                  value: this.props.gas
+                  placeholder: "Gas Bill"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -247,10 +336,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Gas Bill"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-burn"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
 
-            <LabelInputField
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Electric"
+              handleChange={this.props.electricHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -259,9 +372,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.electricHandleInputChange,
-                  placeholder: "Electricity Bill",
-                  value: this.props.electric
+                  placeholder: "Electric"
                 },
                 leftIconProps: {
                   iconProps: {
@@ -280,11 +391,34 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                   }
                 }
               }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Electric"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-percent"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    classNames: "fas fa-bolt"
+                  },
+                  spanProps: {
+                    classNames: "icon is-small"
+                  }
+                }
+              }}
             />
 
-            <PercentageRentInputField
-              rent={this.props.rent}
+            <PercentageAmountInputField
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
               label="Management"
+              handleChange={this.props.managementHandleInputChange}
               fieldProps={{
                 classNames: "is-horizontal"
               }}
@@ -293,13 +427,11 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               inputControlProps={{
                 inputProps: {
-                  handleChange: this.props.managementHandleInputChange,
-                  placeholder: "Management",
-                  value: this.props.management
+                  placeholder: "Management"
                 },
                 leftIconProps: {
                   iconProps: {
-                    classNames: "fas fa-percent"
+                    classNames: "fas fa-dollar-sign"
                   },
                   spanProps: {
                     classNames: "icon is-small"
@@ -316,13 +448,11 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               }}
               conversionControlProps={{
                 inputProps: {
-                  handleChange: this.props.managementHandleInputChange,
-                  placeholder: "Management",
-                  value: this.props.management
+                  placeholder: "Management"
                 },
                 leftIconProps: {
                   iconProps: {
-                    classNames: "fas fa-dollar-sign"
+                    classNames: "fas fa-percent"
                   },
                   spanProps: {
                     classNames: "icon is-small"
@@ -372,8 +502,6 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
                 }
               }}
             />
-
-            {/* Outputs */}
 
             <div className="content">
               <LabelInputField

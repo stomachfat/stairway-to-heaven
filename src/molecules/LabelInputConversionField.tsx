@@ -14,6 +14,8 @@ export interface ILabelInputConversionProps {
   fieldProps: IFieldProps;
   inputControlProps: IInputControl;
   conversionControlProps: IInputControl;
+  handleSaveWith?: "primaryInput" | "secondaryInput";
+  handleChange?: (value: string) => void;
   primaryToSecondaryConversion: (a: any) => any;
   secondaryToPrimaryConversion: (a: any) => any;
 }
@@ -36,28 +38,59 @@ class LabelInputConversionField extends Component<
   public propagateConversion = (which: string, input: string) => {
     const {
       primaryToSecondaryConversion = noop,
-      secondaryToPrimaryConversion = noop
+      secondaryToPrimaryConversion = noop,
+      handleSaveWith
     } = this.props;
 
-    console.log("propagateConversion: ", which, input);
+    const primaryInput = String(secondaryToPrimaryConversion(Number(input)));
+    const secondaryInput = String(primaryToSecondaryConversion(Number(input)));
 
     switch (which) {
       case "primaryInput":
         {
           this.setState({
-            secondaryInput: String(primaryToSecondaryConversion(Number(input)))
+            secondaryInput
           });
         }
         break;
       case "secondaryInput":
         {
-          const primaryInput = String(
-            secondaryToPrimaryConversion(Number(input))
-          );
-          console.log("primaryInput: ", primaryInput);
           this.setState({
             primaryInput
           });
+        }
+        break;
+    }
+
+    switch (handleSaveWith) {
+      case "primaryInput":
+        {
+          if (which === "secondaryInput") {
+            if (typeof this.props.handleChange === "function") {
+              this.props.handleChange(primaryInput);
+            }
+          }
+
+          if (which === "primaryInput") {
+            if (typeof this.props.handleChange === "function") {
+              this.props.handleChange(input);
+            }
+          }
+        }
+        break;
+      case "secondaryInput":
+        {
+          if (which === "primaryInput") {
+            if (typeof this.props.handleChange === "function") {
+              this.props.handleChange(secondaryInput);
+            }
+          }
+
+          if (which === "secondaryInput") {
+            if (typeof this.props.handleChange === "function") {
+              this.props.handleChange(input);
+            }
+          }
         }
         break;
     }
@@ -95,6 +128,25 @@ class LabelInputConversionField extends Component<
       inputControlProps,
       conversionControlProps
     } = this.props;
+
+    const inputControlPropsRecompose = {
+      ...inputControlProps,
+      inputProps: {
+        ...((inputControlProps && inputControlProps.inputProps) || {}),
+        handleChange: this.handleInputChange("primaryInput"),
+        value: this.state.primaryInput
+      }
+    };
+
+    const conversionControlPropsRecompose = {
+      ...conversionControlProps,
+      inputProps: {
+        ...((inputControlProps && inputControlProps.inputProps) || {}),
+        handleChange: this.handleInputChange("secondaryInput"),
+        value: this.state.secondaryInput
+      }
+    };
+
     return (
       <Field {...fieldProps}>
         <FieldLabel {...fieldLabelProps}>
@@ -102,22 +154,10 @@ class LabelInputConversionField extends Component<
         </FieldLabel>
         <FieldBody>
           <Field>
-            <InputControl
-              {...inputControlProps}
-              inputProps={{
-                handleChange: this.handleInputChange("primaryInput"),
-                value: this.state.primaryInput
-              }}
-            />
+            <InputControl {...inputControlPropsRecompose} />
           </Field>
           <Field>
-            <InputControl
-              {...conversionControlProps}
-              inputProps={{
-                handleChange: this.handleInputChange("secondaryInput"),
-                value: this.state.secondaryInput
-              }}
-            />
+            <InputControl {...conversionControlPropsRecompose} />
           </Field>
         </FieldBody>
       </Field>
