@@ -1,29 +1,26 @@
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 interface IFieldBodyProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<IFieldBodyProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const FieldBody: SFC<Partial<IFieldBodyProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <div
-      className={"field-body " + classNames}
-      {...rest}
-    >
+    <div className={"field-body " + className} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-FieldBody.defaultProps = defaultProps
+FieldBody.defaultProps = defaultProps;
 
-export default FieldBody
+export default FieldBody;

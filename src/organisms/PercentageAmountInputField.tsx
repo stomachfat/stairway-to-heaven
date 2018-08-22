@@ -11,6 +11,7 @@ interface IPercentageAmountInputFieldProps
   amount: string;
   order: string[];
   handleChange?: (value: string) => void;
+  value?: string;
 }
 
 class PercentageAmountInputField extends React.Component<
@@ -62,11 +63,12 @@ class PercentageAmountInputField extends React.Component<
   }
 
   public render() {
-    const { amount, ...inputProps } = this.props;
+    const { amount, value, ...inputProps } = this.props;
 
     return (
       <LabelInputConversionField
         {...inputProps}
+        value={value}
         primaryToSecondaryConversion={this.primaryToSecondaryConversion}
         secondaryToPrimaryConversion={this.secondaryToPrimaryConversion}
         handleSaveWith={

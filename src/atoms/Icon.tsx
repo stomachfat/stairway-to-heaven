@@ -1,46 +1,41 @@
-import * as React from 'react'
-import { SFC } from 'react'
+import * as React from "react";
+import { SFC } from "react";
 
 interface ISpanProps extends HTMLSpanElement {
-  classNames: string,
+  className: string;
 }
 
 interface IiProps extends HTMLDivElement {
-  classNames: string,
+  className: string;
 }
 
 export interface IIconProps {
-  spanProps?: Partial<ISpanProps>,
-  iconProps: Partial<IiProps>,
+  spanProps?: Partial<ISpanProps>;
+  iconProps: Partial<IiProps>;
 }
 
 const defaultSpanProps = {
-  classNames: '',
-}
+  className: ""
+};
 
-const Icon: SFC<IIconProps> = (props) => {
+const Icon: SFC<IIconProps> = props => {
   const {
-    spanProps: {
-      classNames: spanClassNames,
-    } = defaultSpanProps,
-    iconProps: {
-      classNames: iconClassNames,
-    },
-  } = props
+    spanProps: { className: spanClassNames } = defaultSpanProps,
+    iconProps: { className: iconClassNames }
+  } = props;
 
-  return(
+  return (
     <span className={"icon " + spanClassNames}>
-      <i className={iconClassNames}/>
+      <i className={iconClassNames} />
     </span>
-  )
-}
+  );
+};
 
 Icon.defaultProps = {
   iconProps: {
-    classNames: '',
+    className: ""
   },
-  spanProps: defaultSpanProps,
-}
+  spanProps: defaultSpanProps
+};
 
-
-export default Icon
+export default Icon;

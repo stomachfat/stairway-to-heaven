@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface ISectionProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<ISectionProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const Section: SFC<Partial<ISectionProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <section
-      className={cx('section', classNames)}
-      {...rest}
-    >
+    <section className={cx("section", className)} {...rest}>
       {children}
     </section>
-  )
-}
+  );
+};
 
-Section.defaultProps = defaultProps
+Section.defaultProps = defaultProps;
 
-export default Section
+export default Section;

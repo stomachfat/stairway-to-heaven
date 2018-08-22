@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface ICardHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<ICardHeaderProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const CardHeader: SFC<Partial<ICardHeaderProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <header
-    className={cx('card-header', classNames)}
-      {...rest}
-    >
+    <header className={cx("card-header", className)} {...rest}>
       {children}
     </header>
-  )
-}
+  );
+};
 
-CardHeader.defaultProps = defaultProps
+CardHeader.defaultProps = defaultProps;
 
-export default CardHeader
+export default CardHeader;

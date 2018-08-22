@@ -1,29 +1,27 @@
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface IContainerProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<IContainerProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const Container: SFC<Partial<IContainerProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <div
-      className={"container " + classNames}
-      {...rest}
-    >
+    <div className={cx("container ", className)} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-Container.defaultProps = defaultProps
+Container.defaultProps = defaultProps;
 
-export default Container
+export default Container;

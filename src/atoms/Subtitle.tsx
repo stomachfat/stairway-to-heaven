@@ -1,31 +1,29 @@
-import * as React from 'react'
-import { HTMLProps, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLProps, SFC } from "react";
 
 interface ISubtitleProps extends HTMLProps<HTMLHeadingElement> {
-  classNames?: string,
-  title?: string,
+  className?: string;
+  title?: string;
 }
 
 const defaultProps: Partial<ISubtitleProps> = {
-  classNames: '',
-  title: 'Subtitle',
-}
+  className: "",
+  title: "Subtitle"
+};
 
 const Subtitle: SFC<Partial<ISubtitleProps>> = ({
   title,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <h2
-      className={"subtitle " + classNames}
-      {...rest}
-    >
+    <h2 className={cx("subtitle", className)} {...rest}>
       {title}
     </h2>
-  )
-}
+  );
+};
 
-Subtitle.defaultProps = defaultProps
+Subtitle.defaultProps = defaultProps;
 
-export default Subtitle
+export default Subtitle;

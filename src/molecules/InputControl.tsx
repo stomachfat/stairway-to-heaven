@@ -19,7 +19,7 @@ const IInputControl: SFC<Partial<IInputControl>> = ({
 }) => {
   return (
     <Control
-      classNames={cx({
+      className={cx({
         "has-icons-left": Boolean(leftIconProps),
         "has-icons-right": Boolean(rightIconProps)
       })}
@@ -31,9 +31,9 @@ const IInputControl: SFC<Partial<IInputControl>> = ({
             ...leftIconProps,
             spanProps: {
               ...leftIconProps.spanProps,
-              classNames:
+              className:
                 leftIconProps.spanProps &&
-                leftIconProps.spanProps.classNames + " is-left"
+                leftIconProps.spanProps.className + " is-left"
             }
           }}
         />
@@ -44,9 +44,9 @@ const IInputControl: SFC<Partial<IInputControl>> = ({
             ...rightIconProps,
             spanProps: {
               ...rightIconProps.spanProps,
-              classNames:
+              className:
                 rightIconProps.spanProps &&
-                rightIconProps.spanProps.classNames + " is-right"
+                rightIconProps.spanProps.className + " is-right"
             }
           }}
         />

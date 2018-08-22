@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface ICardHeaderIconProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<ICardHeaderIconProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const CardHeaderIcon: SFC<Partial<ICardHeaderIconProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <div
-    className={cx("card-header-icon", classNames)}
-      {...rest}
-    >
+    <div className={cx("card-header-icon", className)} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-CardHeaderIcon.defaultProps = defaultProps
+CardHeaderIcon.defaultProps = defaultProps;
 
-export default CardHeaderIcon
+export default CardHeaderIcon;

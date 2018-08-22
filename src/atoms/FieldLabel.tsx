@@ -1,27 +1,24 @@
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface IFieldLabelProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
-  FieldLabel?: string,
+  className?: string;
+  FieldLabel?: string;
 }
 
 const defaultProps: Partial<IFieldLabelProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const FieldLabel: SFC<Partial<IFieldLabelProps>> = ({
-  classNames,
+  className,
   children,
   ...rest
 }) => {
-  return (
-    <div className={"field-label " + classNames}>
-      {children}
-    </div>
-  )
-}
+  return <div className={cx("field-label", className)}>{children}</div>;
+};
 
-FieldLabel.defaultProps = defaultProps
+FieldLabel.defaultProps = defaultProps;
 
-export default FieldLabel
+export default FieldLabel;

@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface IContentProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<IContentProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const Content: SFC<Partial<IContentProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <div
-    className={cx("content", classNames)}
-      {...rest}
-    >
+    <div className={cx("content", className)} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-Content.defaultProps = defaultProps
+Content.defaultProps = defaultProps;
 
-export default Content
+export default Content;

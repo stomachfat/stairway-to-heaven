@@ -1,30 +1,23 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface ICardProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<ICardProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
-const Card: SFC<Partial<ICardProps>> = ({
-  children,
-  classNames,
-  ...rest
-}) => {
+const Card: SFC<Partial<ICardProps>> = ({ children, className, ...rest }) => {
   return (
-    <div
-    className={cx("card", classNames)}
-      {...rest}
-    >
+    <div className={cx("card", className)} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-Card.defaultProps = defaultProps
+Card.defaultProps = defaultProps;
 
-export default Card
+export default Card;

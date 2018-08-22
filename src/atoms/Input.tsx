@@ -4,14 +4,14 @@ import { Component, SyntheticEvent } from "react";
 
 export interface Iprops extends HTMLInputElement {
   handleChange: (value: string) => void;
-  classNames?: string;
+  // className?: string;
   isDisabled?: boolean;
   isReadonly?: boolean;
 }
 
 class Input extends Component<Partial<Iprops>> {
   public static defaultProps: Partial<Iprops> = {
-    classNames: "",
+    className: "",
     handleChange: () => undefined,
     isDisabled: false,
     isReadonly: false,
@@ -33,7 +33,7 @@ class Input extends Component<Partial<Iprops>> {
   public render() {
     return (
       <input
-        className={cx("input", this.props.classNames)}
+        className={cx("input", this.props.className)}
         placeholder={this.props.placeholder}
         type="text"
         value={this.props.value}

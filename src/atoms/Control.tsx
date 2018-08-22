@@ -1,31 +1,28 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 interface IControlProps extends HTMLAttributes<HTMLParagraphElement> {
-  classNames?: string,
-  Control?: string,
+  className?: string;
+  Control?: string;
 }
 
 const defaultProps: Partial<IControlProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const Control: SFC<Partial<IControlProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <p
-      className={cx("control", classNames)}
-      {...rest}
-    >
+    <p className={cx("control", className)} {...rest}>
       {children}
     </p>
-  )
-}
+  );
+};
 
-Control.defaultProps = defaultProps
+Control.defaultProps = defaultProps;
 
-export default Control
+export default Control;

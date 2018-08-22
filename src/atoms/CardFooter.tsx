@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface ICardFooterProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<ICardFooterProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const CardFooter: SFC<Partial<ICardFooterProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <footer
-    className={cx('card-footer', classNames)}
-      {...rest}
-    >
+    <footer className={cx("card-footer", className)} {...rest}>
       {children}
     </footer>
-  )
-}
+  );
+};
 
-CardFooter.defaultProps = defaultProps
+CardFooter.defaultProps = defaultProps;
 
-export default CardFooter
+export default CardFooter;

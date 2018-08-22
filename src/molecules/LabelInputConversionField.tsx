@@ -2,6 +2,7 @@ import { noop } from "lodash";
 import * as React from "react";
 import { Component } from "react";
 
+import { isNumber } from "util";
 import Field, { IFieldProps } from "../atoms/Field";
 import FieldBody from "../atoms/FieldBody";
 import FieldLabel, { IFieldLabelProps } from "../atoms/FieldLabel";
@@ -18,6 +19,7 @@ export interface ILabelInputConversionProps {
   handleChange?: (value: string) => void;
   primaryToSecondaryConversion: (a: any) => any;
   secondaryToPrimaryConversion: (a: any) => any;
+  value?: string;
 }
 
 interface ILabelInputConversionState {
@@ -44,23 +46,6 @@ class LabelInputConversionField extends Component<
 
     const primaryInput = String(secondaryToPrimaryConversion(Number(input)));
     const secondaryInput = String(primaryToSecondaryConversion(Number(input)));
-
-    switch (which) {
-      case "primaryInput":
-        {
-          this.setState({
-            secondaryInput
-          });
-        }
-        break;
-      case "secondaryInput":
-        {
-          this.setState({
-            primaryInput
-          });
-        }
-        break;
-    }
 
     switch (handleSaveWith) {
       case "primaryInput":
@@ -97,28 +82,22 @@ class LabelInputConversionField extends Component<
   };
 
   public handleInputChange = (which: string) => (input: string) => {
-    this.setState(
-      {
-        [which]: input
-      },
-      () => {
-        this.propagateConversion(which, input);
-      }
-    );
+    this.propagateConversion(which, input);
   };
 
-  public forceRecalculate = (which: string) => {
-    this.handleInputChange(which)(this.state[which]);
-  };
+  public calculateSecondaryValue = () => {
+    const { primaryToSecondaryConversion = noop, value } = this.props;
 
-  public componentWillReceiveProps(nextProps: ILabelInputConversionProps) {
-    if (
-      this.props.primaryToSecondaryConversion !==
-      nextProps.primaryToSecondaryConversion
-    ) {
-      this.forceRecalculate("primaryInput");
-    }
-  }
+    let secondaryValue = value
+      ? primaryToSecondaryConversion(Number(value))
+      : "";
+    secondaryValue =
+      isNumber(secondaryValue) && !isNaN(secondaryValue)
+        ? String(secondaryValue)
+        : "";
+
+    return secondaryValue;
+  };
 
   public render() {
     const {
@@ -126,15 +105,18 @@ class LabelInputConversionField extends Component<
       fieldLabelProps,
       fieldProps,
       inputControlProps,
-      conversionControlProps
+      conversionControlProps,
+      value
     } = this.props;
+
+    const secondaryValue = this.calculateSecondaryValue();
 
     const inputControlPropsRecompose = {
       ...inputControlProps,
       inputProps: {
         ...((inputControlProps && inputControlProps.inputProps) || {}),
         handleChange: this.handleInputChange("primaryInput"),
-        value: this.state.primaryInput
+        value
       }
     };
 
@@ -143,7 +125,7 @@ class LabelInputConversionField extends Component<
       inputProps: {
         ...((inputControlProps && inputControlProps.inputProps) || {}),
         handleChange: this.handleInputChange("secondaryInput"),
-        value: this.state.secondaryInput
+        value: secondaryValue
       }
     };
 

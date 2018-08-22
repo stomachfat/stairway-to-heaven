@@ -1,32 +1,25 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { LabelHTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { LabelHTMLAttributes, SFC } from "react";
 
 interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
-  classNames?: string,
-  label?: string,
+  className?: string;
+  label?: string;
 }
 
 const defaultProps: Partial<ILabelProps> = {
-  classNames: '',
-  label: 'Label',
-}
+  className: "",
+  label: "Label"
+};
 
-const Label: SFC<Partial<ILabelProps>> = ({
-  label,
-  classNames,
-  ...rest
-}) => {
+const Label: SFC<Partial<ILabelProps>> = ({ label, className, ...rest }) => {
   return (
-    <label
-      className={cx("label", classNames)}
-      {...rest}
-    >
+    <label className={cx("label", className)} {...rest}>
       {label}
     </label>
-  )
-}
+  );
+};
 
-Label.defaultProps = defaultProps
+Label.defaultProps = defaultProps;
 
-export default Label
+export default Label;

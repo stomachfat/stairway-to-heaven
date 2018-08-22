@@ -1,30 +1,27 @@
-import cx from 'classnames'
-import * as React from 'react'
-import { HTMLAttributes, SFC } from 'react'
+import cx from "classnames";
+import * as React from "react";
+import { HTMLAttributes, SFC } from "react";
 
 export interface IColumnProps extends HTMLAttributes<HTMLDivElement> {
-  classNames?: string,
+  className?: string;
 }
 
 const defaultProps: Partial<IColumnProps> = {
-  classNames: '',
-}
+  className: ""
+};
 
 const Column: SFC<Partial<IColumnProps>> = ({
   children,
-  classNames,
+  className,
   ...rest
 }) => {
   return (
-    <div
-    className={cx("column", classNames)}
-      {...rest}
-    >
+    <div className={cx("column", className)} {...rest}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-Column.defaultProps = defaultProps
+Column.defaultProps = defaultProps;
 
-export default Column
+export default Column;

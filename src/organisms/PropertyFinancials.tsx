@@ -31,6 +31,8 @@ class PropertyFinancials extends Component {
     offerPrice: "",
     rent: "",
     repairCosts: "",
+    taxes: "",
+    vacancy: "",
     vacancyRate: "",
     water: ""
   };
@@ -136,7 +138,7 @@ class PropertyFinancials extends Component {
         <Section>
           <Container>
             <Columns>
-              <Column classNames="is-half-desktop">
+              <Column className="is-half-desktop">
                 <PurchaseFinancing
                   allInCost={allInCost}
                   askingPrice={this.state.askingPrice}
@@ -178,7 +180,7 @@ class PropertyFinancials extends Component {
                   monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
                 />
               </Column>
-              <Column classNames="is-half-desktop">
+              <Column className="is-half-desktop">
                 <MonthlyExpenses
                   allInCost={allInCost}
                   capitalExpenditures={this.state.capitalExpenditures}
@@ -191,14 +193,14 @@ class PropertyFinancials extends Component {
                   amortizationPeriodInYearsHandleInputChange={this.handleInputChange(
                     "amortizationPeriodInYears"
                   )}
-                  insurance={this.state.insurance}
-                  insuranceHandleInputChange={this.handleInputChange(
-                    "insurance"
-                  )}
                   electric={this.state.electric}
                   electricHandleInputChange={this.handleInputChange("electric")}
                   gas={this.state.gas}
                   gasHandleInputChange={this.handleInputChange("gas")}
+                  insurance={this.state.insurance}
+                  insuranceHandleInputChange={this.handleInputChange(
+                    "insurance"
+                  )}
                   management={this.state.management}
                   managementHandleInputChange={this.handleInputChange(
                     "management"
@@ -210,6 +212,10 @@ class PropertyFinancials extends Component {
                   )}
                   outOfPocketCost={outOfPocketCost}
                   rent={this.state.rent}
+                  taxes={this.state.taxes}
+                  taxesHandleInputChange={this.handleInputChange("taxes")}
+                  vacancy={this.state.vacancy}
+                  vacancyHandleInputChange={this.handleInputChange("vacancy")}
                   water={this.state.water}
                   waterHandleInputChange={this.handleInputChange("water")}
                   monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
@@ -221,7 +227,7 @@ class PropertyFinancials extends Component {
         <Section>
           <Container>
             <Columns>
-              <Column classNames="">
+              <Column className="">
                 <QuickAndDirtyCapRate
                   capRate={this.state.capRate}
                   capRateHandleInputChange={this.handleInputChange("capRate")}
