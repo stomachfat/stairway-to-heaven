@@ -29,6 +29,8 @@ interface IProps {
   monthlyPrincipalAndInterest: string;
   maintenance: string;
   maintenanceHandleInputChange: InputChangeHandlerFunc;
+  miscellaneousExpenses: string;
+  miscellaneousExpensesHandleInputChange: InputChangeHandlerFunc;
   outOfPocketCost: string;
   rent: string;
   taxes: string;
@@ -59,6 +61,8 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
     maintenanceHandleInputChange: (value: string) => undefined,
     management: "",
     managementHandleInputChange: (value: string) => undefined,
+    miscellaneousExpenses: "",
+    miscellaneousExpensesHandleInputChange: (value: string) => undefined,
     monthlyPrincipalAndInterest: "",
     outOfPocketCost: "",
     rent: "",
@@ -85,6 +89,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
       gas,
       electric,
       management,
+      miscellaneousExpenses,
       taxes,
       vacancy
     } = this.props;
@@ -97,6 +102,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
       gas,
       electric,
       management,
+      miscellaneousExpenses,
       taxes,
       vacancy
     ];
@@ -617,6 +623,62 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
               conversionControlProps={{
                 inputProps: {
                   placeholder: "Vacancy"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    className: "fas fa-percent"
+                  },
+                  spanProps: {
+                    className: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    className: "fas fa-door-open"
+                  },
+                  spanProps: {
+                    className: "icon is-small"
+                  }
+                }
+              }}
+            />
+
+            <PercentageAmountInputField
+              value={this.props.miscellaneousExpenses}
+              amount={this.props.rent}
+              order={["dollar", "percentage"]}
+              label="Misc."
+              handleChange={this.props.miscellaneousExpensesHandleInputChange}
+              fieldProps={{
+                className: "is-horizontal"
+              }}
+              fieldLabelProps={{
+                className: "is-normal"
+              }}
+              inputControlProps={{
+                inputProps: {
+                  placeholder: "Miscellaneous"
+                },
+                leftIconProps: {
+                  iconProps: {
+                    className: "fas fa-dollar-sign"
+                  },
+                  spanProps: {
+                    className: "icon is-small"
+                  }
+                },
+                rightIconProps: {
+                  iconProps: {
+                    className: "fas fa-door-open"
+                  },
+                  spanProps: {
+                    className: "icon is-small"
+                  }
+                }
+              }}
+              conversionControlProps={{
+                inputProps: {
+                  placeholder: "Miscellaneous"
                 },
                 leftIconProps: {
                   iconProps: {
