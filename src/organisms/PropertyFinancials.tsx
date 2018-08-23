@@ -28,6 +28,7 @@ class PropertyFinancials extends Component {
     interestRate: "",
     maintenance: "",
     management: "",
+    miscellaneousExpenses: "",
     offerPrice: "",
     rent: "",
     repairCosts: "",
@@ -138,6 +139,28 @@ class PropertyFinancials extends Component {
         <Section>
           <Container>
             <Columns>
+              <Column className="">
+                <QuickAndDirtyCapRate
+                  capRate={this.state.capRate}
+                  capRateHandleInputChange={this.handleInputChange("capRate")}
+                  expenseRate={this.state.expenseRate}
+                  expenseRateHandleInputChange={this.handleInputChange(
+                    "expenseRate"
+                  )}
+                  rent={this.state.rent}
+                  rentHandleInputChange={this.handleInputChange("rent")}
+                  vacancyRate={this.state.vacancyRate}
+                  vacancyRateHandleInputChange={this.handleInputChange(
+                    "vacancyRate"
+                  )}
+                />
+              </Column>
+            </Columns>
+          </Container>
+        </Section>
+        <Section>
+          <Container>
+            <Columns>
               <Column className="is-half-desktop">
                 <PurchaseFinancing
                   allInCost={allInCost}
@@ -210,6 +233,10 @@ class PropertyFinancials extends Component {
                   maintenanceHandleInputChange={this.handleInputChange(
                     "maintenance"
                   )}
+                  miscellaneousExpenses={this.state.miscellaneousExpenses}
+                  miscellaneousExpensesHandleInputChange={this.handleInputChange(
+                    "miscellaneousExpenses"
+                  )}
                   outOfPocketCost={outOfPocketCost}
                   rent={this.state.rent}
                   taxes={this.state.taxes}
@@ -219,28 +246,6 @@ class PropertyFinancials extends Component {
                   water={this.state.water}
                   waterHandleInputChange={this.handleInputChange("water")}
                   monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
-                />
-              </Column>
-            </Columns>
-          </Container>
-        </Section>
-        <Section>
-          <Container>
-            <Columns>
-              <Column className="">
-                <QuickAndDirtyCapRate
-                  capRate={this.state.capRate}
-                  capRateHandleInputChange={this.handleInputChange("capRate")}
-                  expenseRate={this.state.expenseRate}
-                  expenseRateHandleInputChange={this.handleInputChange(
-                    "expenseRate"
-                  )}
-                  rent={this.state.rent}
-                  rentHandleInputChange={this.handleInputChange("rent")}
-                  vacancyRate={this.state.vacancyRate}
-                  vacancyRateHandleInputChange={this.handleInputChange(
-                    "vacancyRate"
-                  )}
                 />
               </Column>
             </Columns>
