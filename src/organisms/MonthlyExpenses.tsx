@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { filter } from "lodash";
 import Card from "../atoms/Card";
 import CardContent from "../atoms/CardContent";
 import CardFooter from "../atoms/CardFooter";
@@ -35,6 +34,7 @@ interface IProps {
   rent: string;
   taxes: string;
   taxesHandleInputChange: InputChangeHandlerFunc;
+  totalOperatingExpenses: string;
   vacancy: string;
   vacancyHandleInputChange: InputChangeHandlerFunc;
   water: string;
@@ -68,6 +68,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
     rent: "",
     taxes: "",
     taxesHandleInputChange: (value: string) => undefined,
+    totalOperatingExpenses: "",
     vacancy: "",
     vacancyHandleInputChange: (value: string) => undefined,
     water: "",
@@ -80,50 +81,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
 
   public primaryToSecondaryConversion = (p: number) => this.percentageOfRent(p);
 
-  public calculateTotalOperatingExpenses = () => {
-    const {
-      capitalExpenditures,
-      maintenance,
-      insurance,
-      water,
-      gas,
-      electric,
-      management,
-      miscellaneousExpenses,
-      taxes,
-      vacancy
-    } = this.props;
-
-    const expenses = [
-      capitalExpenditures,
-      maintenance,
-      insurance,
-      water,
-      gas,
-      electric,
-      management,
-      miscellaneousExpenses,
-      taxes,
-      vacancy
-    ];
-
-    const expensesWithUserInput = filter(expenses, exp => {
-      return exp !== "" && exp !== undefined;
-    });
-
-    if (expensesWithUserInput.length === 0) {
-      return "";
-    }
-
-    return String(
-      expenses.reduce((prevVal, currVal) => {
-        return prevVal + Number(currVal);
-      }, 0)
-    );
-  };
-
   public render() {
-    const totalOperatingExpenses = this.calculateTotalOperatingExpenses();
     return (
       <Card>
         <CardHeader>
@@ -701,7 +659,7 @@ class MonthlyExpenses extends React.Component<Partial<IProps>> {
 
             <Content>
               <PercentageAmountInputField
-                value={totalOperatingExpenses}
+                value={this.props.totalOperatingExpenses}
                 amount={this.props.rent}
                 order={["dollar", "percentage"]}
                 label="Total Operating Expenses"

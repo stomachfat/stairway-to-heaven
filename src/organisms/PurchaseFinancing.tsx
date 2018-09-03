@@ -241,6 +241,7 @@ class PurchaseFinancing extends React.Component<Partial<IProps>> {
             />
 
             <PercentageAmountInputField
+              value={this.props.downPayment}
               amount={this.props.offerPrice}
               order={["dollar", "percentage"]}
               label="Down Payment"

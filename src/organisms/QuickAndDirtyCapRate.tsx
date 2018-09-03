@@ -189,7 +189,7 @@ class QuickAndDirtyCapRate extends React.Component<Partial<IProps>> {
               inputControlProps={{
                 inputProps: {
                   handleChange: this.props.capRateHandleInputChange,
-                  placeholder: "Cap Rate",
+                  placeholder: "Target Cap Rate",
                   value: this.props.capRate
                 },
                 leftIconProps: {

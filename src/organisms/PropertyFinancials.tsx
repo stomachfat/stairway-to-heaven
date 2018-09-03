@@ -1,6 +1,7 @@
-import * as React from "react";
+import Finance from "financejs";
+import { filter } from "lodash";
 import { Component } from "react";
-
+import * as React from "react";
 import Column from "../atoms/Column";
 import Columns from "../atoms/Columns";
 import Container from "../atoms/Container";
@@ -8,8 +9,7 @@ import Section from "../atoms/Section";
 import MonthlyExpenses from "../organisms/MonthlyExpenses";
 import PurchaseFinancing from "../organisms/PurchaseFinancing";
 import QuickAndDirtyCapRate from "../organisms/QuickAndDirtyCapRate";
-
-import Finance from "financejs";
+import Yields from "../organisms/Yields";
 const finance = new Finance();
 
 class PropertyFinancials extends Component {
@@ -18,6 +18,7 @@ class PropertyFinancials extends Component {
     askingPrice: "",
     capRate: "",
     capitalExpenditures: "",
+    cashOnCashReturnBeforeTaxes: "",
     closingCosts: "",
     downPayment: "",
     electric: "",
@@ -111,6 +112,94 @@ class PropertyFinancials extends Component {
     const outOfPocketCostsNum = this.calculateOutOfPocketCosts() || 0;
 
     return outOfPocketCostsNum + repairCostsNum;
+  };
+
+  public calculateTotalOperatingExpenses = () => {
+    const {
+      capitalExpenditures,
+      maintenance,
+      insurance,
+      water,
+      gas,
+      electric,
+      management,
+      miscellaneousExpenses,
+      taxes,
+      vacancy
+    } = this.state;
+
+    const expenses = [
+      capitalExpenditures,
+      maintenance,
+      insurance,
+      water,
+      gas,
+      electric,
+      management,
+      miscellaneousExpenses,
+      taxes,
+      vacancy
+    ];
+
+    const expensesWithUserInput = filter(expenses, exp => {
+      return exp !== "" && exp !== undefined;
+    });
+
+    if (expensesWithUserInput.length === 0) {
+      return "";
+    }
+
+    return String(
+      expenses.reduce((prevVal, currVal) => {
+        return prevVal + Number(currVal);
+      }, 0)
+    );
+  };
+
+  public calculateCashOnCashReturnBeforeTaxesMonthly = () => {
+    const { downPayment, rent } = this.state;
+
+    const preformattedMPAI = this.calculateMonthlyPrincipalAndInterest();
+
+    if (!downPayment || !rent || !preformattedMPAI) {
+      return undefined;
+    }
+
+    const totalCashFlowMonthly =
+      Number(rent) -
+      (Number(this.calculateTotalOperatingExpenses()) + preformattedMPAI);
+
+    const calculateCashOnCashReturnBeforeTaxesMonthly =
+      totalCashFlowMonthly / Number(this.state.downPayment);
+
+    return calculateCashOnCashReturnBeforeTaxesMonthly * 100;
+  };
+
+  public calculateCashOnCashReturnBeforeTaxesYearly = () => {
+    const monthly = this.calculateCashOnCashReturnBeforeTaxesMonthly();
+
+    if (typeof monthly === "number") {
+      return monthly * 12;
+    }
+
+    return undefined;
+  };
+
+  public calculateCapitalRateOfReturn = () => {
+    const { downPayment, rent } = this.state;
+    const allInCost = this.calculateAllInCost();
+
+    if (!downPayment || !rent || !allInCost) {
+      return undefined;
+    }
+
+    const totalCashFlowMonthly =
+      Number(rent) - Number(this.calculateTotalOperatingExpenses());
+
+    const calculateCashOnCashReturnBeforeTaxesMonthly =
+      totalCashFlowMonthly / allInCost;
+
+    return calculateCashOnCashReturnBeforeTaxesMonthly * 12 * 100;
   };
 
   public handleInputChange = (field: string) => (value: string) => {
@@ -241,11 +330,25 @@ class PropertyFinancials extends Component {
                   rent={this.state.rent}
                   taxes={this.state.taxes}
                   taxesHandleInputChange={this.handleInputChange("taxes")}
+                  totalOperatingExpenses={this.calculateTotalOperatingExpenses()}
                   vacancy={this.state.vacancy}
                   vacancyHandleInputChange={this.handleInputChange("vacancy")}
                   water={this.state.water}
                   waterHandleInputChange={this.handleInputChange("water")}
                   monthlyPrincipalAndInterest={monthlyPrincipalAndInterest}
+                />
+              </Column>
+            </Columns>
+          </Container>
+        </Section>
+        <Section>
+          <Container>
+            <Columns>
+              <Column className="is-one-third-desktop">
+                <Yields
+                  cashOnCashReturnBeforeTaxesMonthly={this.calculateCashOnCashReturnBeforeTaxesMonthly()}
+                  cashOnCashReturnBeforeTaxesYearly={this.calculateCashOnCashReturnBeforeTaxesYearly()}
+                  capitalRateOfReturn={this.calculateCapitalRateOfReturn()}
                 />
               </Column>
             </Columns>
